@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+   {% block body %}
+
+<section class="form-container">
+
+   <form action="" method="post" enctype="multipart/form-data">
+      <h3>update category</h3>
+      <p>category title<span>*</span></p>
+      <input type="text" name="title" placeholder="enter category title" value="{{categories[1]}}" required maxlength="50" class="box">
+
+      <p>category description<span>*</span></p>
+      <input type="text" name="description" placeholder="enter category description" value="{{categories[2]}}" required maxlength="500" class="box" >
+      
+      <p>select category image <span>*</span></p>
+      <input type="file" name="img" value="{{categories[3]}}" required class="box" >
+      <input type="submit" value="add category" name="submit" class="btn">
+   </form>
+
+</section>
+
+{% endblock %}

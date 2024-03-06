@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+   {% block body %}
+
+
+<section class="home-grid">
+
+   <h1 class="heading">Quick options</h1>
+
+   <div class="box-container">
+    <div class="box">
+        <h3 class="title">Quote</h3>
+        <div class="flex">
+            <q class="tutor">Computers are fast; programmers keep it slow</q>
+            <h6>--light</h6>
+           
+        </div>
+     </div>
+<!--
+      <div class="box">
+         <h3 class="title">popular categories</h3>
+         <div class="flex">
+            <a href="many-articles.html"><i class='bx bxs-castle' ></i><span>TOURISM</span></a>
+            <a href="many-articles.html"><i class='bx bxs-music'></i><span>ARTS</span></i></a>
+            <a href="many-articles.html"><i class='bx bx-football'></i><span>SPORTS</span></a>
+            <a href="many-articles.html"><i class="bx bx-baguette"></i><span>FOOD</span></a>
+            <a href="many-articles.html"><i class="bx bxs-palette"></i><span>DESIGN</span></a>
+            <a href="many-articles.html"><i class='bx bxs-book' ></i><span>ENGLISH</span></a>
+            <a href="many-articles.html"><i class='bx bxl-php' ></i><span>PROGRAMMING</span></a>
+          
+         </div>
+      </div>-->
+
+      
+      <!--<div class="box">
+         {%for top_articles in top_n_article_ids%}
+         <h3 class="title"> 
+            {{top_articles}}
+         </h3>
+         {%endfor%}
+            <p class="tutor"> Come and dive into our website...</p>
+     </div>-->
+
+      <div class="box">
+         <h3 class="title">Come and discover our world </h3>
+         <p class="tutor">Do you want to join us?</p>
+         <a href="{{ url_for('register') }}" class="inline-btn">Let's Go!</a>
+      </div>
+
+
+   </div>
+
+</section>
+
+
+<section class="categories">
+
+   <h1 class="heading">Recommended articles</h1>
+
+   <div class="box-container">
+
+      {% for category in categories%}
+      <div class="box">
+         <div class="thumb">
+           <img src="{{ category[3] }}" alt="">
+            
+         </div>
+         <h3 class="title">{{category[1]}}</h3>
+         <p>{{ category[2] }}</p>
+         <a href="{{url_for('articles', id=category[0])}}" class="inline-btn">Open</a>
+         
+      </div>
+
+      {% endfor %}
+</section>
+
+{% endblock %}

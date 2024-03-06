@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+   {% block body %}
+
+<section class="form-container">
+
+   <form action="" method="post" enctype="multipart/form-data">
+      <h3>update profile</h3>
+      <p>update name</p>
+      <input type="text" name="name" placeholder="User" maxlength="50" class="box" value="{{user[2]}}">
+      <p>update email</p>
+      <input type="email" name="email" placeholder="User@gmail.come" maxlength="50" class="box" value="{{user[3]}}">
+      <p>update your image</p>
+      <input type="file" accept="image/*" class="box" name="image" value="{{user[7]}}">
+      <input type="submit" value="Save Profile" name="save_profile" class="btn">
+      <br><br>
+      <h3>update password</h3>
+      <p>previous password</p>
+      <input type="password" name="old_pass" placeholder="enter your old password" maxlength="20" class="box">
+      <p>new password</p>
+      <input type="password" name="new_pass" placeholder="enter your old password" maxlength="20" class="box">
+      <p>confirm password</p>
+      <input type="password" name="c_pass" placeholder="confirm your new password" maxlength="20" class="box">
+      <input type="submit" value="Save Password" name="save_password" class="btn">
+   </form>
+
+</section>
+
+{% endblock %}

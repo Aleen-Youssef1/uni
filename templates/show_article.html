@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block body %}
+
+<section id="article">
+
+  <!--heading---------->
+  <div class="article-heading">
+    <h1>Our Article</h1>
+  </div>
+
+  {%if article %}
+  <!--article-container---------->
+  <div class="article-container">
+    <!--box-1---------->
+    <div class="article-box"></div>
+
+    <!--img---------->
+    <div class="article-img">
+      <img src="../static/images/altumcode-XMFZqrGyV-Q-unsplash.jpg" width="970" height="460" alt="article">
+    </div>
+
+    <!--text---------->
+    <div class="article-text">
+      <div class="social-sharing">
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.url }}" target="_blank">
+          <img src="../static/images/fb.png" alt="Share on Facebook">
+        </a>
+        <a href="whatsapp://send?text={{ request.url }}" data-action="share/whatsapp/share" target="_blank">
+          <img src="../static/images/whatsapp.png" alt="Share on WhatsApp" width="48px" height="48px">
+        </a>
+        <!-- Add this inside your social-sharing div -->
+<a href="https://t.me/share/url?url={{ request.url }}" target="_blank">
+  <img src="../static/images/te.png" alt="Share on Telegram">
+</a>
+
+      </div>
+      <span>{{article[5]}}</span>
+     
+      <h1 id="artTitle">{{article[1]}}</h1>
+      <p>{{article[2] | safe}}</p>
+    </div>
+
+  </div>
+  {%endif%}
+  <div class="rating">
+    <p>Was the information useful?</p>
+  <form action="/show_article/{{ article[0] }}" method="POST">
+    {% if user %}
+        <input type="hidden" name="user_id" value="{{user[0]}}" />
+        {%endif%}
+      <input type="radio" id="star5" name="rating" value="5" />
+      <label for="star5"></label>
+      <input type="radio" id="star4" name="rating" value="4" />
+      <label for="star4"></label>
+      <input type="radio" id="star3" name="rating" value="3" />
+      <label for="star3"></label>
+      <input type="radio" id="star2" name="rating" value="2" />
+      <label for="star2"></label>
+      <input type="radio" id="star1" name="rating" value="1" />
+      <label for="star1"></label>
+      <button type="submit">Submit Rating</button>
+  </form>
+    </div>
+    
+
+{% endblock %}

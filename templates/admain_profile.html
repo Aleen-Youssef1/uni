@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+   {% block body %}
+   {%if user[1]==1%}
+
+<section class="categories">
+   <table class="content-table">
+      <thead>
+       <tr>
+           <th>Section</th>
+           <th>Information</th>
+           <th>Additional info</th>
+          
+           
+        </tr>
+     </thead>
+     <tbody>
+      
+       <tr>
+
+         <td>Number of users</td>
+          {%if manage_info%}
+          <td>{{manage_info}}</td>
+          {%endif%}
+          
+          <td> <a href="{{ url_for('user') }}">view user</span></a></td>
+         
+       </tr>
+
+       <tr>
+
+         <td>Number of articles</td>
+          
+          <td>{{articlesInfo}}</td>
+          
+          
+          <td> <a href="{{ url_for('view_articles') }}">view articles</span></a></td>
+         
+       </tr>
+      
+     </tbody>
+ </table>
+
+   <h1 class="heading">Our categories</h1>
+
+   <div class="box-container">
+
+      {% for category in allCategories%}
+      <div class="box">
+         <div class="thumb">
+            <a href="{{url_for('articles', id=category[0])}}">
+           <img src="{{ category[3] }}" alt="">
+            
+         </div>
+         <h3 class="title" style="color: black;">{{category[1]}}</h3>
+         <p>{{category[2]}}</p>
+      </a>
+         <a href="{{url_for('update_category', id=category[0])}}" class="inline-btn">Update</a>
+         <a href="#" class="inline-btn">delete</a>
+         
+         
+      </div>
+     
+        
+
+      {% endfor %}
+      
+         
+      </div>
+
+
+</section>
+{% else %}
+<p>Not allowed</p>
+<a href="{{ url_for('register') }}" class="option-btn">register</a>
+{%endif%}
+{% endblock %}

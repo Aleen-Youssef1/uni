@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+   {% block body %}
+
+
+<table class="content-table">
+     <thead>
+      <tr>
+          <th>title</th>
+          <th>discribtion</th>
+          <th>image</th>
+          <th>category</th>
+          <th>publish date</th>
+          <th colspan="2">Mosify</th>
+
+          
+       </tr>
+    </thead>
+    <tbody>
+      {%for article_info in article_info%}
+      <tr>
+         <td>{{article_info[1]}}</td>
+         <td>{{article_info[2][:100]| safe}}....</td>
+         <td><img src="{{article_info[3]}}" alt="" width="100px" height="100px"></td>
+         <td>{{article_info[4]}}</td>
+         <td>{{article_info[5]}}</td>
+         <td> <a href="{{ url_for('update_article',id=article_info[0])}}">update</span></a></td>
+         <td> <a href="{{ url_for('delete_article',id=article_info[0]) }}">Delete</span></a></td>
+         
+      </tr>
+      {%endfor%}
+     
+    </tbody>
+</table>
+
+{% endblock %}

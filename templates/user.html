@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+   {% block body %}
+
+
+<table class="content-table">
+     <thead>
+      <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Age</th>
+          <th>Interests</th>
+          <th>reg-time</th>
+          <th>average rating</th>
+       </tr>
+    </thead>
+    <tbody>
+      {%for user in users_info%}
+      <tr>
+         <td>{{user[2]}}</td>
+         <td>{{user[3]}}</td>
+         <td>{{user[5]}}</td>
+         <td>{{user[6]}}</td>
+         <td>{{user[8]}}</td>
+         {%if average_rate[0]==user[0]%}
+         <td>{{average_rate[1]}}</td>
+         {%endif%}
+      </tr>
+      {%endfor%}
+     
+    </tbody>
+</table>
+
+{% endblock %}

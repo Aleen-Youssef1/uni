@@ -1,0 +1,23 @@
+{% extends "base.html" %} 
+
+{% block body %}  
+<section class="form-container"> 
+   <form action="{{ url_for('add_article') }}" method="post" enctype="multipart/form-data">
+      <h3>Write your crative article!</h3>
+      <p>Article title <span>*</span></p>      
+      <input type="text" name="title" required  class="box" >
+      <p>your article <span>*</span></p>      
+      <textarea id="editor" name="addart"></textarea>
+      <p>select category<span>*</span></p> 
+      <select name="interest" required class="box">
+         <option value="">Choose category</option>
+         {% for category in categories %}
+         <option value="{{ category[0] }}">{{ category[1] }}</option>
+         {% endfor %}
+     </select>    
+      <p>select image <span>*</span></p>
+      <input type="file" name="image"   required class="box"> 
+      <input type="submit" value="add article" name="write" class="btn"> 
+   </form> 
+</section> 
+{%endblock%}

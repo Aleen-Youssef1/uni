@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+   {% block body %}
+
+<section class="user-profile">
+
+   <h1 class="heading">your profile</h1>
+
+   <div class="info">
+
+      {%if user%}
+      <div class="user">
+        <img src="{{user[7]}}" alt="">
+         
+         <h3>{{user[2]}}</h3>
+         {%if user[1]==1%}
+         <p>Admin</p>
+         {%else%}
+         <p>User</p>
+         {%endif%}
+         <a href="{{ url_for('update_user',id=user[0]) }}" class="inline-btn">update profile</a>
+      </div>
+      {%endif%}
+   
+
+
+
+          <div class="box-container">
+   
+         <div class="box">
+            <div class="flex">
+               <i class="fas fa-bookmark"></i>
+               <div>
+                  <span>4</span>
+                  <p>saved articles</p>
+               </div>
+            </div>
+            <a href="#" class="inline-btn">view articles</a>
+         </div>
+   
+         <div class="box">
+            <div class="flex">
+               <i class="fas fa-heart"></i>
+               <div>
+                  {%if countArticle %}
+                  <span>{{countArticle}}</span>
+                  {%else%}
+                  <span>0</span>
+                  {%endif%}
+                  <p>articles rated</p>
+               </div>
+            </div>
+            <a href="#" class="inline-btn">view liked</a>
+         </div>
+   
+         <div class="box">
+            <div class="flex">
+               <i class="fas fa-comment"></i>
+               <div>
+                  <span>12</span>
+                  <p>articles comments</p>
+               </div>
+            </div>
+            <a href="#" class="inline-btn">view comments</a>
+         </div>
+   
+      </div>
+   </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+  <script src="//cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+   <!--font awesome box link -->
+   <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <title>univers</title>
+</head>
+<body>
+   {% if message is defined and message %}
+   <div class="message">
+      <span>{{message}}</span>
+      <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+   </div>
+{% endif %}
+  <header class="header">
+   
+    <section class="flex">
+ 
+      <a href="{{ url_for('home') }}" class="logo">
+         <img src="../static/images/galaxy (2).png" alt="" width="35px" height="35px">
+         <span style="display: inline-block; vertical-align: middle;">Univers</span>
+       </a>
+ 
+       <form action="search.html" method="post" class="search-form">
+          <input type="text" name="search_box" required placeholder="search topics..." maxlength="100">
+          <button type="submit" class="fas fa-search">Go</button>
+       </form>
+ 
+       <div class="icons">
+          <div id="menu-btn" class="fas fa-bars"></div>
+          <div id="search-btn" class="fas fa-search"></div>
+          <div id="user-btn" class="fas fa-user"></div>
+          <div id="toggle-btn" class="fas fa-sun"></div>
+       </div>
+ 
+       <div class="profile">
+         {% if user %}
+          <img src="{{user[7]}}" class="image" alt="">
+          <h3 class="name">{{ user[2] }}</h3>
+          <p class="role">{%if user[1]==1%}
+            Admin
+            {% else %}
+            user
+            {% endif %}</p>
+          <a href="{{ url_for('profile') }}" class="btn">view profile</a>
+          <div class="flex-btn">
+            <a href="{{ url_for('logout') }}" class="option-btn">logout</a>
+            <a href="{{ url_for('update_user',id=user[0]) }}" class="option-btn">Settings</a>
+         </div>
+          {% else %}
+          <div class="flex-btn">
+            <a href="{{ url_for('login') }}" class="option-btn">login</a>
+             <a href="{{ url_for('register') }}" class="option-btn">register</a>
+          </div>
+          {% endif %}
+       </div>
+ 
+    </section>
+ 
+ </header>  
+ <div class="side-bar">
+
+  <div id="close-btn">
+     <i class="fas fa-times"></i>
+  </div>
+  {% if user %}
+  <div class="profile">
+      
+      <img src="{{ user[7] }}" class="image" alt="Profile Image">
+      <h3 class="name" style="color: #8e44ad;">{{ user[2] }}</h3>
+      <p class="role">{%if user[1]==1%}
+         Admin
+         <a href="{{ url_for('admain_profile') }}" class="btn">view profile</a>
+         {% else %}
+         user
+         <a href="{{ url_for('profile') }}" class="btn">view profile</a>
+         {% endif %}
+      </p>
+     
+  </div>
+{% endif %}
+
+
+  <nav class="navbar">
+     <a href="{{ url_for('home') }}"><i class="fas fa-home"></i><span>Home</span></a>
+     <a href="{{ url_for('about') }}"><i class="fas fa-question"></i><span>About</span></a>
+     <a href="{{ url_for('contact') }}"><i class="fas fa-headset"></i><span>Contact us</span></a>
+     {%if user[1]==1%}
+     <a href="{{ url_for('add_article') }}"><i class="fas fa-headset"></i><span>Add artice</span></a>
+     <a href="{{ url_for('add_category') }}"><i class="fas fa-headset"></i><span>Add categries</span></a>
+     <a href="{{ url_for('user') }}"><i class="fas fa-headset"></i><span>view user</span></a>
+     {%endif%}
+  </nav>
+
+</div>
+  {% block body %}{% endblock %}
+  <footer class="footer">
+
+   &copy; copyright @ 2023 by <span>ITE</span> | all rights reserved!
+
+  </footer>
+  
+  <!-- custom js file link  -->
+  <script src="../static/js/script.js"></script>
+</body>
+</html>
